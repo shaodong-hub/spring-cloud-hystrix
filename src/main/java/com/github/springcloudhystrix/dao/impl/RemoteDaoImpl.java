@@ -23,13 +23,12 @@ import javax.annotation.Resource;
 
 @Slf4j
 @Repository
-public class IRemoteDaoImpl implements IRemoteDao {
+public class RemoteDaoImpl implements IRemoteDao {
 
     @Resource
     private RestTemplate restTemplate;
 
     @Override
-
     @HystrixCommand(fallbackMethod = "defaultHystrix",
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "10000"),
@@ -50,6 +49,13 @@ public class IRemoteDaoImpl implements IRemoteDao {
         return 200 == code;
     }
 
+    /**
+     * 超时或者错误 默认进入的方法
+     *
+     * @param url 请求的URL
+     * @return Boolean
+     */
+    @SuppressWarnings("unused")
     public Boolean defaultHystrix(String url) {
         log.info("超时或者错误:" + url);
         return false;
