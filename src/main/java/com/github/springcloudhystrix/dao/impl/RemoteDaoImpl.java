@@ -45,8 +45,7 @@ public class RemoteDaoImpl implements IRemoteDao {
     )
     public Boolean getHttpStatus(String url) {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-        int code = responseEntity.getStatusCodeValue();
-        return 200 == code;
+        return 200 == responseEntity.getStatusCodeValue();
     }
 
     /**
