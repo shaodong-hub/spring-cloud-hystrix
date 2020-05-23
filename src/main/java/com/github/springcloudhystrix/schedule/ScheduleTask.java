@@ -28,5 +28,4 @@ public class ScheduleTask {
         System.out.println(server.getHttpStatus("http://127.0.0.1:9999/403"));
     }
 
-
 }
